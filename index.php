@@ -12,7 +12,7 @@
 <?php
 	error_reporting(~E_NOTICE);
 	session_start();
-	$ini['mail'] = "slim";
+	$ini['mail'] = "slim.amamou+rach@gmail.com";
 	$ini['url'] = "http://".$_SERVER['HTTP_HOST'].$_SERVER['PHP_SELF']."?otp=";
 	$ini['maillist'] = "/etc/rach.mails";
 
@@ -30,6 +30,8 @@
 				mail($m, $_POST['subject'], $_POST['message'], "From: $from\r\nReply-to: $replyto");
 				print " $name ";
 			}
+			mail($ini['mail'], $_POST['subject'], $_POST['message'], "From: $from\r\nReply-to: $replyto");
+			mail($replyto, $_POST['subject'], $_POST['message'], "From: $from\r\nReply-to: $replyto");
 			print "<div class='alert alert-success'>Votre message a été envoyé</div>";
 			unset($_SESSION['verified']);
 		} else {
